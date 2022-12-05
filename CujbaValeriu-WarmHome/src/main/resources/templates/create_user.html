@@ -11,8 +11,8 @@
 	crossorigin="anonymous">
 </head>
 <body>
-	
-	<!-- Nav bar  Se putea de pus intr-un footer-->	
+
+	<!-- Nav bar  Se putea de pus intr-un footer-->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<div class="container-fluid">
 			<a class="navbar-brand" href="#">User Management System</a>
@@ -30,17 +30,17 @@
 			</div>
 		</div>
 	</nav>
-	
+
 	<br>
 	<br>
-	
+
 	<div class="container">
 		<div class="row">
 			<div
 				class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
 				<h1 class="text-center">Create New User</h1>
 				<div class="card-body">
-					<form th:action="@{/users}" th:object="${user}" method="POST">
+					<form th:action="@{/users}" th:object="${user}" method="POST">	
 						<div>
 							<label> User First Name</label> <input type="text"
 								name="firstName" th:field="*{firstName}" class="form-control"
@@ -48,8 +48,8 @@
 						</div>
 
 						<div>
-							<label> User Last Name</label> <input type="text"
-								name="lastName" th:field="*{lastName}" class="form-control"
+							<label> User Last Name</label> <input type="text" name="lastName"
+								th:field="*{lastName}" class="form-control"
 								placeholder="Enter User Last Name">
 						</div>
 
@@ -59,8 +59,8 @@
 								placeholder="Enter User Email">
 						</div>
 						<div>
-							<label> User Password</label> <input type="password" name="password"
-								th:field="*{password}" class="form-control"
+							<label> User Password</label> <input type="password"
+								name="password" th:field="*{password}" class="form-control"
 								placeholder="Enter User Email">
 						</div>
 						<div>
