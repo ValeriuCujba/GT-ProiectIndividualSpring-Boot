@@ -1,0 +1,27 @@
+@charset "ISO-8859-1";
+
+.container{
+	display: flex;
+	justify-content: center;
+}
+
+.container-cards {
+	border: 2px solid gray;
+	width: 100%;
+}
+
+
+
+.carousel-inner .carousel-item img {
+	object-fit: cover;
+	object-position: center;		
+	overflow: hidden;
+	height: 30vh;
+	width: 100%	
+}
+
+
+.info-card{
+	display: flex;
+	justify-content: space-between;
+}

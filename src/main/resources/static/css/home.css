@@ -1,0 +1,10 @@
+.main {
+	background: url("/img/home-bg.jpg") no-repeat;
+	background-size: 100% 100%;
+	width: 100%;
+}
+
+.main h1 {
+	font-size: 3rem;
+	font-weight: 700;
+}
