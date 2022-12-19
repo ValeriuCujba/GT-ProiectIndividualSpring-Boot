@@ -29,13 +29,13 @@ public class CityController {
 	@Autowired
 	CityService cityService;
 
-	@GetMapping("/cities")
+	@GetMapping("/cms/cities")
 	public String listCities(Model model) {
 		model.addAttribute("listOfCities", cityService.getAllCities());
 		return "cities";
 	}
 
-	@GetMapping("/cities/new")
+	@GetMapping("/cms/cities/new")
 	public String createCityForm(Model model) {
 
 		City cityForm = new City();
@@ -44,7 +44,7 @@ public class CityController {
 		return "create_city";
 	}
 
-	@PostMapping("/cities")
+	@PostMapping("/cms/cities")
 	public String saveCity(@ModelAttribute("cityForm") City city, @RequestParam("fileImage") MultipartFile file)
 			throws IOException {
 
@@ -56,11 +56,11 @@ public class CityController {
 		
 		FileUploadUtil.saveFile(uploadDir, fileName, file);
 
-		return "redirect:/cities";
+		return "redirect:/cms/cities";
 
 	}
 
-	@GetMapping("/cities/edit/{id}")
+	@GetMapping("/cms/cities/edit/{id}")
 	public String editCityForm(@PathVariable Long id, Model model) {
 
 		model.addAttribute("cityForm", cityService.getCityById(id));
@@ -68,7 +68,7 @@ public class CityController {
 
 	}
 
-	@PostMapping("/cities/update/{id}")
+	@PostMapping("/cms/cities/update/{id}")
 	public String updateCity(@PathVariable Long id, @RequestParam("fileImage") MultipartFile file,
 			@ModelAttribute("cityForm") City cityForm, Model model) throws IOException {
 
@@ -87,11 +87,11 @@ public class CityController {
 
 		FileUploadUtil.saveFile(uploadDir, fileName, file);
 
-		return "redirect:/cities";
+		return "redirect:/cms/cities";
 
 	}
 	
-	@GetMapping("/cities/delete/{id}")
+	@GetMapping("/cms/cities/delete/{id}")
 	public String deleteCity(@PathVariable Long id) {
 		
 		
@@ -100,7 +100,7 @@ public class CityController {
 		FileUploadUtil.deleteDirectory(file);
 		cityService.deleteCityById(id);		
 		
-		return "redirect:/cities";
+		return "redirect:/cms/cities";
 	}
 
 }

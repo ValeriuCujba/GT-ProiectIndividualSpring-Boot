@@ -40,7 +40,7 @@
 				class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
 				<h1 class="text-center">Update City</h1>
 				<div class="card-body">
-					<form th:action="@{/cities/update/{id}(id=${cityForm.id})}" th:object="${cityForm}" method="POST" enctype="multipart/form-data">
+					<form th:action="@{/cms/cities/update/{id}(id=${cityForm.id})}" th:object="${cityForm}" method="POST" enctype="multipart/form-data">
 						<div>
 							<label> City</label> <input type="text" name="city"
 								th:field="*{nume}" class="form-control" placeholder="City Name">

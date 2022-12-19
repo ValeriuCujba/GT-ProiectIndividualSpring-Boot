@@ -15,7 +15,7 @@
 	<!-- Nav bar  Se putea de pus intr-un footer-->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="#">WarmHome</a>
+			<a class="navbar-brand" href="@{/}">WarmHome</a>
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarText"
 				aria-controls="navbarText" aria-expanded="false"
@@ -25,7 +25,7 @@
 			<div class="collapse navbar-collapse" id="navbarText">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" th:href="@{/properties}">All properties</a></li>
+						aria-current="page" th:href="@{/cms/properties}">All properties</a></li>
 				</ul>
 			</div>
 		</div>
@@ -40,7 +40,7 @@
 				class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
 				<h1 class="text-center">Create New Property</h1>
 				<div class="card-body">
-					<form th:action="@{/properties/update/{id}(id=${propertyForm.id})}"
+					<form th:action="@{/cms/properties/update/{id}(id=${propertyForm.id})}"
 						th:object="${propertyForm}" method="POST"
 						enctype="multipart/form-data">
 						<div>
@@ -56,7 +56,7 @@
 						</div>
 
 						<div>
-							<label> City</label> <input type="text" name="oras" th:field="*{city}"
+							<label> City</label> <input type="text" name="oras" 
 								class="form-control" placeholder="City">
 						</div>
 						<div>

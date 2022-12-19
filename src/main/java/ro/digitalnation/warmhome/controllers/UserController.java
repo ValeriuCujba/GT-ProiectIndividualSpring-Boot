@@ -18,13 +18,13 @@ public class UserController {
 	UserService userService;
 	
 	
-	@GetMapping("/users")
+	@GetMapping("/cms/users")
 	public String listUsers(Model model) {
 		model.addAttribute("listOfUsers", userService.getAllUsers());
 		return "users";
 	}
 	
-	@GetMapping("/users/new")
+	@GetMapping("/cms/users/new")
 	public String createUserForm(Model model) {
 		
 		//Create student object to hold student from data
@@ -33,7 +33,7 @@ public class UserController {
 		return "create_user";		
 	}
 	
-	@PutMapping("/users")
+	@PutMapping("/cms/users")
 	public String saveUser(@ModelAttribute("user") User user) {
 		userService.saveUser(user);		
 		return "redirect:/users";			

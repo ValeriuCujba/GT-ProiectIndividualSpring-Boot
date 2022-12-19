@@ -14,7 +14,7 @@
 
 	<div class="row">
 		<div class="col-lg-3">
-			<a th:href="@{/properties/new}" class="btn btn-primary btn-sm mb-3">
+			<a th:href="@{/cms/properties/new}" class="btn btn-primary btn-sm mb-3">
 				Add Property</a>
 		</div>
 	</div>
@@ -46,9 +46,9 @@
 				<td th:text="${property.descriere}"></td>
 				<td><a th:href="@{/properties/view/{id}(id=${property.id})}"
 					class="btn btn-info"> View </a> <a
-						th:href="@{/properties/edit/{id}(id=${property.id})}"
+						th:href="@{/cms/properties/edit/{id}(id=${property.id})}"
 						class="btn btn-primary"> Edit</a> <a
-						th:href="@{/properties/delete/{id}(id=${property.id})}"
+						th:href="@{/cms/properties/delete/{id}(id=${property.id})}"
 						class="btn btn-danger"> Delete</a></td>
 			</tr>
 		</tbody>

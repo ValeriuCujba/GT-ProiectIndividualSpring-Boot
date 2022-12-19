@@ -25,7 +25,7 @@
 			<div class="collapse navbar-collapse" id="navbarText">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" th:href="@{/properties}">All properties</a></li>
+						aria-current="page" th:href="@{/cms/properties}">All properties</a></li>
 				</ul>
 			</div>
 		</div>
@@ -40,7 +40,7 @@
 				class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
 				<h1 class="text-center">Create New Property</h1>
 				<div class="card-body">
-					<form th:action="@{/properties}" th:object="${propertyForm}"
+					<form th:action="@{/cms/properties}" th:object="${propertyForm}"
 						method="POST" enctype="multipart/form-data">
 						<div>
 							<label> Title</label> <input type="text" name="title"

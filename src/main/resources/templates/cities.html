@@ -14,7 +14,7 @@
 
 	<div class="row">
 		<div class="col-lg-3">
-			<a th:href="@{/cities/new}" class="btn btn-primary btn-sm mb-3">
+			<a th:href="@{/cms/cities/new}" class="btn btn-primary btn-sm mb-3">
 				Add City</a>
 		</div>
 	</div>
@@ -36,12 +36,12 @@
 				<td><img th:src="@{${city.imagePath}}" height=300 width=500></td>
 				<td>
 					<ul th:each="property: ${city.listaProprietati}">
-						<li th:text="${property.titlu}"></li>
+						<li><a th:href="@{/properties/view/{id}(id=${property.id})}"> <span th:text="${property.titlu}"></span></a></li>
 					</ul>
 				</td>
-				<td><a th:href="@{/cities/edit/{id}(id=${city.id})}"
+				<td><a th:href="@{/cms/cities/edit/{id}(id=${city.id})}"
 					class="btn btn-primary"> Edit</a> <a
-					th:href="@{/cities/delete/{id}(id=${city.id})}"
+					th:href="@{/cms/cities/delete/{id}(id=${city.id})}"
 					class="btn btn-danger"> Delete</a></td>
 			</tr>
 
