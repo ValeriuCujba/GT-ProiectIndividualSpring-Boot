@@ -40,13 +40,13 @@ public class PropertyController {
 	@Autowired
 	PropertyAdService propertyAdService;
 
-	@GetMapping("/properties")
+	@GetMapping("/cms/properties")
 	public String showAllProperties(Model model) {
 		model.addAttribute("properties", propertyService.getAllProperties());
 		return "properties";
 	}
 
-	@GetMapping("/properties/new")
+	@GetMapping("/cms/properties/new")
 	public String createPropertyForm(Model model) {
 
 		// Create property object to hold student from data
@@ -55,7 +55,7 @@ public class PropertyController {
 		return "create_property";
 	}
 
-	@PostMapping("/properties")
+	@PostMapping("/cms/properties")
 	public String saveProperty(@ModelAttribute("propertyForm") PropertyForm propertyFromForm,
 			@RequestParam("files") MultipartFile[] files) throws IOException {
 
@@ -93,10 +93,10 @@ public class PropertyController {
 		}
 		System.out.println("\n\n\n" + fileNames);
 
-		return "redirect:/properties";
+		return "redirect:/cms/properties";
 	}
 
-	@GetMapping("/properties/edit/{id}")
+	@GetMapping("/cms/properties/edit/{id}")
 	public String editPropertyForm(@PathVariable Long id, Model model) {
 		PropertyForm propertyForm = new PropertyForm();
 
@@ -118,7 +118,7 @@ public class PropertyController {
 
 	}
 
-	@PostMapping("/properties/update/{id}")
+	@PostMapping("/cms/properties/update/{id}")
 	public String updateProperty(@PathVariable Long id, @RequestParam("files") MultipartFile[] files,
 			@RequestParam("oras") String oras, @ModelAttribute("propertyForm") PropertyForm propertyForm, Model model)
 			throws IOException {
@@ -157,11 +157,11 @@ public class PropertyController {
 		}
 		System.out.println("\n\n\n" + fileNames);
 
-		return "redirect:/properties";
+		return "redirect:/cms/properties";
 
 	}
 
-	@GetMapping("/properties/delete/{id}")
+	@GetMapping("/cms/properties/delete/{id}")
 	public String deleteProperty(@PathVariable Long id) {
 
 		String dirToDelete = "./property-image/" + id;
@@ -169,7 +169,7 @@ public class PropertyController {
 		FileUploadUtil.deleteDirectory(file);
 
 		propertyService.deletePropertyById(id);
-		return "redirect:/properties";
+		return "redirect:/cms/properties";
 	}
 
 	@GetMapping("/properties/view/{id}")
