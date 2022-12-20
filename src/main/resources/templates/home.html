@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,6 +25,7 @@
 		<div class="container py-5">
 			<div class="row py-5">
 				<div class="col-lg-10 py-5 mx-auto">
+				<h1 sec:authorize="isAuthenticated()"> Logged user:<span sec:authentication="name"></span></h1>				
 					<h1 class="text-center">Find Your Dream Home</h1>
 
 					<div class="">
@@ -61,13 +63,6 @@
 
 		</div>
 	</div>
-
-
-
-
-
-
-
 
 	<div th:replace="~{footer :: footer}"></div>
 
