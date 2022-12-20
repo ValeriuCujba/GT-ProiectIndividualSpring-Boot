@@ -3,13 +3,16 @@ package ro.digitalnation.warmhome.service;
 import java.util.List;
 
 import ro.digitalnation.warmhome.models.User;
+import ro.digitalnation.warmhome.util.UserDto;
 
 public interface UserService {
+
+	List<UserDto> getAllUsers();
+
+	void saveUser(UserDto userDto);	
+
+	User getUserById(Long id);	
 	
-	List<User> getAllUsers();
-	User saveUser(User user);
-	User updateUser(User user);
-	User getUserById(Long id);
-	User getUserByRole(String role);
-	void deleteUserById(Long id);
+	//for spring security use
+	User findByEmail(String email);
 }
