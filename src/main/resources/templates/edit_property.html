@@ -26,40 +26,40 @@
 						<div>
 							<label> Title</label> <input type="text" name="title"
 								th:field="*{title}" class="form-control"
-								placeholder="Property Title">
+								placeholder="Property Title" required autofocus="autofocus">
 						</div>
 
 						<div>
 							<label> Type</label> <input type="text" name="tip"
 								th:field="*{type}" class="form-control"
-								placeholder="Property Type">
+								placeholder="Property Type" required autofocus="autofocus">
 						</div>
 
 						<div>
-							<label> City</label> <input type="text" name="oras" 
-								class="form-control" placeholder="City">
+							<label> City <em>(Full name!)</em></label> <input type="text" name="oras" 
+								class="form-control" placeholder="City" required autofocus="autofocus">
 						</div>
 						<div>
 							<label> Space</label> <input type="text" name="suprafata"
 								th:field="*{space}" class="form-control"
-								placeholder="Squared space">
+								placeholder="Squared space" required autofocus="autofocus">
 						</div>
 						<div>
 							<label> Price</label> <input type="text" name="pret"
-								th:field="*{price}" class="form-control" placeholder="Price">
+								th:field="*{price}" class="form-control" placeholder="Price" required autofocus="autofocus">
 						</div>
 						<div>
 							<label> Phone Number</label> <input type="text" name="telefon"
-								th:field="*{phoneNumber}" class="form-control" placeholder="Phone Number">
+								th:field="*{phoneNumber}" class="form-control" placeholder="Phone Number" required autofocus="autofocus">
 						</div>
 						<div class="mb-3">
 							<label for="description" class="form-label">Description </label>
-							<textarea class="form-control" id="description" rows="3" th:field="*{description}"></textarea>
+							<textarea class="form-control" id="description" rows="3" th:field="*{description}" required autofocus="autofocus"></textarea>
 						</div>
 						<div>
 							<label> Select images:</label> <input type="file" name="files"
 								multiple accept="image/png, image/jpeg" id="files" 
-								class="form-control">
+								class="form-control" required autofocus="autofocus">
 						</div>
 
 						<div class="box-footer">

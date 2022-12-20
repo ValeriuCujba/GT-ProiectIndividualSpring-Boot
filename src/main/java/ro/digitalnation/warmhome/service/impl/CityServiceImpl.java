@@ -42,9 +42,12 @@ public class CityServiceImpl implements CityService {
 	@Override
 	public City getCityByName(String name) {
 		List<City> list = cityRepository.findAll();
-
-		City city = list.stream().filter(c -> c.getNume().toLowerCase().equals(name.toLowerCase())).findFirst().get();
-
+		City city=null;
+		try {
+			city = list.stream().filter(c -> c.getNume().toLowerCase().equals(name.toLowerCase())).findFirst().get();
+		}catch(Exception ex){
+			System.out.println(ex.toString());
+		}
 		return city;
 	}
 
