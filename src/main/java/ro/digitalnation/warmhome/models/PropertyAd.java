@@ -1,8 +1,6 @@
 package ro.digitalnation.warmhome.models;
 
 import java.time.LocalDate;
-import java.util.List;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

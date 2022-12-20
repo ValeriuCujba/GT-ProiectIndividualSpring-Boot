@@ -1,46 +1,63 @@
 package ro.digitalnation.warmhome.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-
+import jakarta.validation.Valid;
 import ro.digitalnation.warmhome.models.User;
 import ro.digitalnation.warmhome.service.UserService;
+import ro.digitalnation.warmhome.util.UserDto;
 
 @Controller
 public class UserController {
+
+	private UserService userService;
+
+	public UserController(UserService userService) {
+		this.userService = userService;
+	}
 	
-	@Autowired
-	UserService userService;
+	@GetMapping("/login")
+    public String loginForm() {
+        return "login";
+    }
 	
-	
+
 	@GetMapping("/cms/users")
 	public String listUsers(Model model) {
-		model.addAttribute("listOfUsers", userService.getAllUsers());
+		List<UserDto> users = userService.getAllUsers();
+		model.addAttribute("users", users);
 		return "users";
 	}
-	
-	@GetMapping("/cms/users/new")
+
+	// handler method to handle user registration form request
+	@GetMapping("/register")
 	public String createUserForm(Model model) {
-		
-		//Create student object to hold student from data
-		User user =  new User();
-		model.addAttribute("user", user);		
-		return "create_user";		
+		// create model object to store form data
+
+		UserDto user = new UserDto();
+		model.addAttribute("user", user);
+		return "create_user";
 	}
-	
-	@PutMapping("/cms/users")
-	public String saveUser(@ModelAttribute("user") User user) {
-		userService.saveUser(user);		
-		return "redirect:/users";			
+
+	// handler method to handle register user form submit request
+	@PostMapping("/register/save")
+	public String registration(@Valid @ModelAttribute("user") UserDto user, BindingResult result, Model model) {
+		User existing = userService.findByEmail(user.getEmail());
+		if (existing != null) {
+			result.rejectValue("email", null, "There is already an account registered with that email");
+		}
+		if (result.hasErrors()) {
+			model.addAttribute("user", user);
+			return "register";
+		}
+		userService.saveUser(user);
+		return "redirect:/register?success";
 	}
-	
-	
-	
-	
-	
+
 }
