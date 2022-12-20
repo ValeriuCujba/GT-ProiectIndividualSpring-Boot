@@ -12,28 +12,8 @@
 </head>
 <body>
 	<div th:replace="~{header :: header}"></div>
-
-	<!-- Nav bar  Se putea de pus intr-un footer-->
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<div class="container-fluid">
-			<a class="navbar-brand" th:href="@{/}">WarmHome</a>
-			<button class="navbar-toggler" type="button"
-				data-bs-toggle="collapse" data-bs-target="#navbarText"
-				aria-controls="navbarText" aria-expanded="false"
-				aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarText">
-				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" th:href="@{/cities}">Our cities</a></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
-
-	<br>
-	<br>
+	
+	<br>	
 
 	<div class="container">
 		<div class="row">
@@ -45,11 +25,11 @@
 						method="POST" enctype="multipart/form-data">
 						<div>
 							<label> City</label> <input type="text" name="city"
-								th:field="*{nume}" class="form-control" placeholder="City Name">
+								th:field="*{nume}" class="form-control" placeholder="City Name" required autofocus="autofocus">
 						</div>
 						<div>
 							<label> Image</label> <input type="file" name="fileImage"
-								id="fileImage" accept="image/png, image/jpeg">
+								id="fileImage" accept="image/png, image/jpeg" required autofocus="autofocus">
 						</div>
 						<div class="box-footer">
 							<button type="submit" class="btn btn-primary">Submit</button>

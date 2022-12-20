@@ -23,11 +23,11 @@
 					<form th:action="@{/cms/cities/update/{id}(id=${cityForm.id})}" th:object="${cityForm}" method="POST" enctype="multipart/form-data">
 						<div>
 							<label> City</label> <input type="text" name="city"
-								th:field="*{nume}" class="form-control" placeholder="City Name">
+								th:field="*{nume}" class="form-control" placeholder="City Name" required autofocus="autofocus">
 						</div>
 						<div>
 							<label> Image</label> <input type="file" name="fileImage" id ="fileImage" 
-								accept="image/png, image/jpeg">
+								accept="image/png, image/jpeg" required autofocus="autofocus">
 						</div>
 						<div class="box-footer">
 							<button type="submit" class="btn btn-primary">Submit</button>

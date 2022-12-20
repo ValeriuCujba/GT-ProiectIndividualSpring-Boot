@@ -1,5 +1,11 @@
 @charset "ISO-8859-1";
 
+
+.back-button{
+	margin-left:20px;
+	margin-top: 10px;
+}
+
 .flex-container {
 	display: flex;
 }
@@ -27,6 +33,7 @@
 	background: rgba(235, 192, 52, 0.1);
 	flex: 2;
 	margin: 20px;
+	
 }
 
 .contact-properties{
@@ -36,6 +43,7 @@
 }
 .owner-details h1 {
 	background: rgba(52, 207, 235, 0.5);
+	
 }
 
 /* .date-details{

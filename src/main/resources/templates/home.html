@@ -25,15 +25,17 @@
 		<div class="container py-5">
 			<div class="row py-5">
 				<div class="col-lg-10 py-5 mx-auto">
-				<h1 sec:authorize="isAuthenticated()"> Logged user:<span sec:authentication="name"></span></h1>				
+					<h4 class="text-center" sec:authorize="isAuthenticated()">
+						Hello, <span sec:authentication="name"></span>!
+					</h4>
 					<h1 class="text-center">Find Your Dream Home</h1>
-
+					<br>
 					<div class="">
 						<form th:action="@{/properties/search/city}">
 							<div class="input-group mb-3">
 								<input type="text" class="form-control" th:name="nume"
 									placeholder="Search by city..."
-									aria-describedby="button-addon2">
+									aria-describedby="button-addon2">									
 								<button class="btn btn-primary" type="submit" id="button-addon2">Search</button>
 							</div>
 						</form>

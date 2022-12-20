@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,23 +22,24 @@ import org.springframework.web.multipart.MultipartFile;
 import ro.digitalnation.warmhome.models.City;
 import ro.digitalnation.warmhome.models.Property;
 import ro.digitalnation.warmhome.models.PropertyAd;
-import ro.digitalnation.warmhome.models.PropertyForm;
+import ro.digitalnation.warmhome.models.PropertyDto;
 import ro.digitalnation.warmhome.service.CityService;
 import ro.digitalnation.warmhome.service.PropertyAdService;
 import ro.digitalnation.warmhome.service.PropertyService;
+
 import ro.digitalnation.warmhome.util.FileUploadUtil;
 
 @Controller
 public class PropertyController {
 
 	@Autowired
-	PropertyService propertyService;
+	private PropertyService propertyService;
 
 	@Autowired
-	CityService cityService;
+	private CityService cityService;
 
 	@Autowired
-	PropertyAdService propertyAdService;
+	private PropertyAdService propertyAdService;
 
 	@GetMapping("/cms/properties")
 	public String showAllProperties(Model model) {
@@ -48,13 +51,13 @@ public class PropertyController {
 	public String createPropertyForm(Model model) {
 
 		// Create property object to hold student from data
-		PropertyForm propertyForm = new PropertyForm();
-		model.addAttribute("propertyForm", propertyForm);
+		PropertyDto propertyDto = new PropertyDto();
+		model.addAttribute("propertyForm", propertyDto);
 		return "create_property";
 	}
 
 	@PostMapping("/cms/properties")
-	public String saveProperty(@ModelAttribute("propertyForm") PropertyForm propertyFromForm,
+	public String saveProperty(@ModelAttribute("propertyForm") PropertyDto propertyFromForm,
 			@RequestParam("files") MultipartFile[] files) throws IOException {
 
 		List<String> fileNames = new ArrayList<>();
@@ -96,21 +99,21 @@ public class PropertyController {
 
 	@GetMapping("/cms/properties/edit/{id}")
 	public String editPropertyForm(@PathVariable Long id, Model model) {
-		PropertyForm propertyForm = new PropertyForm();
+		PropertyDto propertyDto = new PropertyDto();
 
 		Property property = propertyService.getPropertyById(id);
 		PropertyAd propertyAd = property.getPropertyAd();
 
-		propertyForm.setId(id);
-		propertyForm.setTitle(property.getTitlu());
-		propertyForm.setCity(property.getOras().getNume());
-		propertyForm.setPrice(property.getPret());
-		propertyForm.setSpace(property.getSuprafata());
-		propertyForm.setType(property.getTip());
-		propertyForm.setPhoneNumber(propertyAd.getPhoneNumber());
-		propertyForm.setDescription(property.getDescriere());
-		propertyForm.setImagesNames(property.getImagesNames());
-		model.addAttribute("propertyForm", propertyForm);
+		propertyDto.setId(id);
+		propertyDto.setTitle(property.getTitlu());
+		propertyDto.setCity(property.getOras().getNume());
+		propertyDto.setPrice(property.getPret());
+		propertyDto.setSpace(property.getSuprafata());
+		propertyDto.setType(property.getTip());
+		propertyDto.setPhoneNumber(propertyAd.getPhoneNumber());
+		propertyDto.setDescription(property.getDescriere());
+		propertyDto.setImagesNames(property.getImagesNames());
+		model.addAttribute("propertyForm", propertyDto);
 
 		return "edit_property";
 
@@ -118,7 +121,7 @@ public class PropertyController {
 
 	@PostMapping("/cms/properties/update/{id}")
 	public String updateProperty(@PathVariable Long id, @RequestParam("files") MultipartFile[] files,
-			@RequestParam("oras") String oras, @ModelAttribute("propertyForm") PropertyForm propertyForm, Model model)
+			@RequestParam("oras") String oras, @ModelAttribute("propertyForm") PropertyDto propertyDto, Model model)
 			throws IOException {
 
 		List<String> fileNames = new ArrayList<>();
@@ -133,18 +136,18 @@ public class PropertyController {
 		updatedProperty.setId(id);
 		City city = cityService.getCityByName(oras);
 		updatedProperty.setOras(city);
-		updatedProperty.setPret(propertyForm.getPrice());
-		updatedProperty.setTitlu(propertyForm.getTitle());
-		updatedProperty.setSuprafata(propertyForm.getSpace());
-		updatedProperty.setDescriere(propertyForm.getDescription());
+		updatedProperty.setPret(propertyDto.getPrice());
+		updatedProperty.setTitlu(propertyDto.getTitle());
+		updatedProperty.setSuprafata(propertyDto.getSpace());
+		updatedProperty.setDescriere(propertyDto.getDescription());
 		updatedProperty.setImagesNames(fileNames);
-		updatedProperty.setTip(propertyForm.getType());
+		updatedProperty.setTip(propertyDto.getType());
 
 		propertyService.saveProperty(updatedProperty);
 
 		PropertyAd propertyAd = updatedProperty.getPropertyAd();
 		propertyAd.setProperty(updatedProperty);
-		propertyAd.setPhoneNumber(propertyForm.getPhoneNumber());
+		propertyAd.setPhoneNumber(propertyDto.getPhoneNumber());
 		propertyAdService.savePropertyAd(propertyAd);
 
 		String uploadDir = "./property-image/" + updatedProperty.getId();
@@ -191,7 +194,13 @@ public class PropertyController {
 		if (nume == null || nume.isBlank()) {
 			return "redirect:/";
 		}
+
 		City searchCity = cityService.getCityByName(nume);
+		
+		if(searchCity==null) {
+			return "redirect:/";
+		}
+		
 		List<Property> propertiesByCity = searchCity.getListaProprietati();
 		System.out.println(propertiesByCity);
 		model.addAttribute("properties", propertiesByCity);

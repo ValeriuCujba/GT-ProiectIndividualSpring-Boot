@@ -17,7 +17,14 @@
 
 </head>
 <body>
-	<div th:replace="~{header :: header}"></div>
+	<div th:replace="~{header :: header}"></div>	
+		<div class="back-button" >
+			<form>
+				<input class="btn btn-primary" type="button" value="Go back!"
+					onclick="history.back()">
+			</form>
+		</div>
+	
 	<!-- Carousel -->
 	<div class="flex-container">
 		<div class="flex-child carousel-properties">
@@ -69,7 +76,7 @@
 				</ul>
 				<hr>
 			</div>
-			<div class="owner-details">
+			<div class="owner-details text-center">
 				<h2>Contact the Owner:</h2>
 				<h1 th:text="${propertyAd.phoneNumber}"></h1>
 			</div>

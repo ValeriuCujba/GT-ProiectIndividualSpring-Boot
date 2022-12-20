@@ -8,7 +8,7 @@
 <body>
 
 	<div th:fragment="header">
-		<nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
+		<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 			<div class="container-fluid">
 				<a class="navbar-brand" th:href="@{/}">WarmHome</a>
 				<button class="navbar-toggler" type="button"
@@ -31,10 +31,13 @@
 
 					<form th:action="@{/logout}" class="form-inline">
 						<button sec:authorize="isAuthenticated()"
-							class="btn btn-outline-danger" type="submit">Logout</button>
-						<button sec:authorize="isAnonymous()"
-							class="btn btn-outline-danger" type="submit" th:href="@{/login}">Login</button>
+							class="btn btn-danger" type="submit">Logout</button>						
 					</form>
+					<form sec:authorize="isAnonymous()" th:action="@{/login}" class="form-inline">
+					<button 
+							class="btn btn-danger" type="submit">Login</button>
+					</form>
+					
 				</div>
 			</div>
 		</nav>
