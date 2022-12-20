@@ -11,6 +11,7 @@
 	crossorigin="anonymous">
 </head>
 <body>
+	<div th:replace="~{header :: header}"></div>
 
 	<!-- Nav bar  Se putea de pus intr-un footer-->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -40,14 +41,15 @@
 				class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
 				<h1 class="text-center">Create New City</h1>
 				<div class="card-body">
-					<form th:action="@{/cms/cities}" th:object="${cityForm}" method="POST" enctype="multipart/form-data">
+					<form th:action="@{/cms/cities}" th:object="${cityForm}"
+						method="POST" enctype="multipart/form-data">
 						<div>
 							<label> City</label> <input type="text" name="city"
 								th:field="*{nume}" class="form-control" placeholder="City Name">
 						</div>
 						<div>
-							<label> Image</label> <input type="file" name="fileImage" id ="fileImage" 
-								accept="image/png, image/jpeg">
+							<label> Image</label> <input type="file" name="fileImage"
+								id="fileImage" accept="image/png, image/jpeg">
 						</div>
 						<div class="box-footer">
 							<button type="submit" class="btn btn-primary">Submit</button>
@@ -57,6 +59,8 @@
 			</div>
 		</div>
 	</div>
+
+	<div th:replace="~{footer :: footer}"></div>
 	<!-- JavaScript Bundle with Popper -->
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"

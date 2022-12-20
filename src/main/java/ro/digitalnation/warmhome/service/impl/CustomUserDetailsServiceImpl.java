@@ -27,12 +27,19 @@ public class CustomUserDetailsServiceImpl implements UserDetailsService {
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		User user = userRepository.findByEmail(email);
 
-		if (user != null) {
-			return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(),
-					mapRolesToAuthorities(user.getRoles()));
-		} else {
+		/*
+		 * if (user != null) { return new
+		 * org.springframework.security.core.userdetails.User(user.getEmail(),
+		 * user.getPassword(), mapRolesToAuthorities(user.getRoles())); } else { throw
+		 * new UsernameNotFoundException("Invalid username or password."); }
+		 */
+		
+		if(user == null) {
 			throw new UsernameNotFoundException("Invalid username or password.");
 		}
+		
+		return new org.springframework.security.core.userdetails.User(user.getEmail(),
+				  user.getPassword(), mapRolesToAuthorities(user.getRoles()));
 	}
 
 	private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles) {

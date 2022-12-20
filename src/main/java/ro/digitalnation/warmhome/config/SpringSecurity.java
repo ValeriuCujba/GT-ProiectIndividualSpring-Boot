@@ -32,7 +32,7 @@ public class SpringSecurity {
 		.requestMatchers("/").permitAll()			
 		.and()
 		.formLogin(form -> form.loginPage("/login").loginProcessingUrl("/login").defaultSuccessUrl("/")
-		.permitAll())
+		.permitAll())		
 		.logout(logout -> logout.logoutRequestMatcher(new AntPathRequestMatcher("/logout")).permitAll());
 		return http.build();
 	}
