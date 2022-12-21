@@ -37,6 +37,7 @@ Password: parola)
 
 - Java 17
 - Spring Boot
+- Spring MVC
 - Spring Security
 - Thymeleaf
 - MySQL
