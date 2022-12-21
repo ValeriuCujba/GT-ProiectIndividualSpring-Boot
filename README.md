@@ -48,7 +48,9 @@ Password: parola)
 ## _Authors_
 
 👨‍💻Valeriu Cujba
+
 [![image](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/valeriu-cujba/)
+
 ## _Acknowledgments_
 WarmHome is my final project for the Java track at the: 
 [Digital Nation](https://digitalnation.ro/) - [Generatia Tech](https://generatiatech.ro/)
