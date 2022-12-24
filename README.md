@@ -40,6 +40,7 @@ Password: parola)
 - Spring MVC
 - Spring Security
 - Thymeleaf
+- Bootstrap
 - MySQL
 - Spring Data JPA(Hibernate)
 - Maven
